@@ -89,87 +89,87 @@ ALERTS = [
 
   Alert(
       "steerSaturated",
-      "TAKE CONTROL",
-      "Turn Exceeds Steering Limit",
-      AlertStatus.userPrompt, AlertSize.mid,
-      Priority.LOW, VisualAlert.steerRequired, AudibleAlert.chimePrompt, 1., 2., 3.),
+      "",
+      "",
+      AlertStatus.normal, AlertSize.none,
+      Priority.MID, VisualAlert.none, AudibleAlert.none, .2, 0., 0.),
 
   Alert(
       "steerTempUnavailable",
-      "TAKE CONTROL",
-      "Steering Temporarily Unavailable",
-      AlertStatus.userPrompt, AlertSize.mid,
-      Priority.LOW, VisualAlert.steerRequired, AudibleAlert.chimeWarning1, .4, 2., 3.),
+      "",
+      "",
+      AlertStatus.normal, AlertSize.none,
+      Priority.LOW, VisualAlert.none, AudibleAlert.none, .2, 0., 0.),
 
   Alert(
       "steerTempUnavailableMute",
-      "TAKE CONTROL",
-      "Steering Temporarily Unavailable",
-      AlertStatus.userPrompt, AlertSize.mid,
-      Priority.LOW, VisualAlert.none, AudibleAlert.none, .2, .2, .2),
+      "",
+      "",
+      AlertStatus.normal, AlertSize.none,
+      Priority.LOW, VisualAlert.none, AudibleAlert.none, .2, 0., 0.),
 
   Alert(
       "preDriverDistracted",
-      "KEEP EYES ON ROAD: User Appears Distracted",
       "",
-      AlertStatus.normal, AlertSize.small,
-      Priority.LOW, VisualAlert.steerRequired, AudibleAlert.none, .0, .1, .1, alert_rate=0.75),
+      "",
+      AlertStatus.normal, AlertSize.none,
+      Priority.LOW, VisualAlert.none, AudibleAlert.none, .2, 0., 0.),
 
   Alert(
       "promptDriverDistracted",
-      "KEEP EYES ON ROAD",
-      "User Appears Distracted",
-      AlertStatus.userPrompt, AlertSize.mid,
-      Priority.MID, VisualAlert.steerRequired, AudibleAlert.chimeWarning2, .1, .1, .1),
+      "",
+      "",
+      AlertStatus.normal, AlertSize.none,
+      Priority.LOW, VisualAlert.none, AudibleAlert.none, .2, 0., 0.),
 
   Alert(
       "driverDistracted",
-      "DISENGAGE IMMEDIATELY",
-      "User Was Distracted",
-      AlertStatus.critical, AlertSize.full,
-      Priority.HIGH, VisualAlert.steerRequired, AudibleAlert.chimeWarningRepeat, .1, .1, .1),
+      "",
+      "",
+      AlertStatus.normal, AlertSize.none,
+      Priority.LOW, VisualAlert.none, AudibleAlert.none, .2, 0., 0.),
 
   Alert(
       "preDriverUnresponsive",
-      "TOUCH STEERING WHEEL: No Face Detected",
       "",
-      AlertStatus.normal, AlertSize.small,
-      Priority.LOW, VisualAlert.steerRequired, AudibleAlert.none, .0, .1, .1, alert_rate=0.75),
+      "",
+      AlertStatus.normal, AlertSize.none,
+      Priority.LOW, VisualAlert.none, AudibleAlert.none, .2, 0., 0.),
 
   Alert(
       "promptDriverUnresponsive",
-      "TOUCH STEERING WHEEL",
-      "User Is Unresponsive",
-      AlertStatus.userPrompt, AlertSize.mid,
-      Priority.MID, VisualAlert.steerRequired, AudibleAlert.chimeWarning2, .1, .1, .1),
+      "",
+      "",
+      AlertStatus.normal, AlertSize.none,
+      Priority.LOW, VisualAlert.none, AudibleAlert.none, .2, 0., 0.),
 
   Alert(
       "driverUnresponsive",
-      "DISENGAGE IMMEDIATELY",
-      "User Was Unresponsive",
-      AlertStatus.critical, AlertSize.full,
-      Priority.HIGH, VisualAlert.steerRequired, AudibleAlert.chimeWarningRepeat, .1, .1, .1),
+      "",
+      "",
+      AlertStatus.normal, AlertSize.none,
+      Priority.LOW, VisualAlert.none, AudibleAlert.none, .2, 0., 0.),
 
   Alert(
       "driverMonitorOff",
-      "DRIVER MONITOR IS UNAVAILABLE",
-      "Accuracy Is Low",
-      AlertStatus.normal, AlertSize.mid,
-      Priority.LOW, VisualAlert.none, AudibleAlert.none, .4, 0., 4.),
+      "",
+      "",
+      AlertStatus.normal, AlertSize.none,
+      Priority.LOW, VisualAlert.none, AudibleAlert.none, .2, 0., 0.),
 
   Alert(
       "driverMonitorOn",
-      "DRIVER MONITOR IS AVAILABLE",
-      "Accuracy Is High",
-      AlertStatus.normal, AlertSize.mid,
-      Priority.LOW, VisualAlert.none, AudibleAlert.none, .4, 0., 4.),
+      "",
+      "",
+      AlertStatus.normal, AlertSize.none,
+      Priority.LOW, VisualAlert.none, AudibleAlert.none, .2, 0., 0.),
 
   Alert(
       "geofence",
-      "DISENGAGEMENT REQUIRED",
-      "Not in Geofenced Area",
-      AlertStatus.userPrompt, AlertSize.mid,
-      Priority.HIGH, VisualAlert.steerRequired, AudibleAlert.chimeWarningRepeat, .1, .1, .1),
+      "",
+      "",
+      AlertStatus.normal, AlertSize.none,
+      Priority.LOW, VisualAlert.none, AudibleAlert.none, .2, 0., 0.),
 
   Alert(
       "startup",
