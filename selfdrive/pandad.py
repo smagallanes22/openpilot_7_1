@@ -3,27 +3,19 @@
 import os
 import time
 
+from panda import BASEDIR as PANDA_BASEDIR, Panda, PandaDFU
+from common.basedir import BASEDIR
 from selfdrive.swaglog import cloudlog
-from panda import Panda, PandaDFU, BASEDIR, build_st
+
+PANDA_FW_FN = os.path.join(PANDA_BASEDIR, "board", "obj", "panda.bin.signed")
 
 
-def get_firmware_fn():
-  signed_fn = os.path.join(BASEDIR, "board", "obj", "panda.bin.signed")
-  if os.path.exists(signed_fn):
-    cloudlog.info("Using prebuilt signed firmware")
-    return signed_fn
-  else:
-    cloudlog.info("Building panda firmware")
-    fn = "obj/panda.bin"
-    build_st(fn, clean=False)
-    return os.path.join(BASEDIR, "board", fn)
-
-
-def get_expected_signature(fw_fn=None):
-  if fw_fn is None:
-    fw_fn = get_firmware_fn()
-
-  return Panda.get_signature_from_firmware(fw_fn)
+def get_expected_signature():
+  try:
+    return Panda.get_signature_from_firmware(PANDA_FW_FN)
+  except Exception:
+    cloudlog.exception("Error computing expected signature")
+    return b""
 
 
 def update_panda():
@@ -49,8 +41,7 @@ def update_panda():
 
     time.sleep(1)
 
-  fw_fn = get_firmware_fn()
-  fw_signature = get_expected_signature(fw_fn)
+  fw_signature = get_expected_signature()
 
   try:
     serial = panda.get_serial()[0].decode("utf-8")
@@ -68,11 +59,12 @@ def update_panda():
 
   if panda.bootstub or panda_signature != fw_signature:
     cloudlog.info("Panda firmware out of date, update required")
-    panda.flash(fw_fn)
+    panda.flash()
     cloudlog.info("Done flashing")
 
   if panda.bootstub:
-    cloudlog.info("Flashed firmware not booting, flashing development bootloader")
+    bootstub_version = panda.get_version()
+    cloudlog.info(f"Flashed firmware not booting, flashing development bootloader. Bootstub version: {bootstub_version}")
     panda.recover()
     cloudlog.info("Done flashing bootloader")
 
@@ -85,12 +77,16 @@ def update_panda():
     cloudlog.info("Version mismatch after flashing, exiting")
     raise AssertionError
 
+  cloudlog.info("Resetting panda")
+  panda.reset()
 
-def main(gctx=None):
+
+def main():
   update_panda()
 
-  os.chdir("boardd")
+  os.chdir(os.path.join(BASEDIR, "selfdrive/boardd"))
   os.execvp("./boardd", ["./boardd"])
+
 
 if __name__ == "__main__":
   main()
